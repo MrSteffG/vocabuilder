@@ -1,27 +1,20 @@
 import React from "react";
+import { FaUser } from "react-icons/fa";
 
 const Navbar = () => {
+  const userStyle = { color: "white", fontSize: "1.2em" };
+
   return (
-    <section className="flex justify-center w-screen px-10 pt-5 shadow-md bg-white bg-opacity-40">
-      <div className="flex justify-between w-3/4">
-        <div className="flex">
-          <h1 className="bg-red-400 text-white px-7 rounded-t-lg font-bold text-lg border-red-400 border-t-2 border-x-2 hover:bg-white hover:text-red-400 transition-all">
-            Vocabulary
+    <section className="flex justify-center items-center w-screen shadow-md bg-white bg-opacity-40">
+      <div className="flex justify-between items-center px-10 p-3 w-3/4">
+        <div className="flex items-center justify-center p-3">
+          <h1 className="border-slate-800 text-slate-800 border-4 px-7 rounded-lg font-bold text-lg hover:scale-105 transition-all">
+            Vocabuilder
           </h1>
         </div>
-        <div className="flex gap-1 font-semibold justify-center">
-          <p className="navButton border-red-400 text-red-400 hover:bg-red-400">
-            New Words
-          </p>
-          <p className="navButton border-blue-400 text-blue-400 hover:bg-blue-400">
-            Saved Words
-          </p>
-          <p className="navButton border-green-400 text-green-400 hover:bg-green-400">
-            Friends
-          </p>
-          <p className="navButton border-yellow-400 text-yellow-400 hover:bg-yellow-400">
-            Profile
-          </p>
+
+        <div className="bg-black p-2 rounded-full hover:scale-105 transition-all duration-300 hover:bg-gradient-to-tr from-red-500 to-yellow-300">
+          <FaUser style={userStyle} />
         </div>
       </div>
     </section>

@@ -13,15 +13,21 @@ const Card = () => {
   const heartStyleRed = { color: "black", fontSize: "1.3em" };
 
   //Variables
-  const urlRandWord = "https://random-word-api.herokuapp.com/word";
-  const [data, setData] = useState([]);
+  //const urlRandWord = "https://random-word-api.herokuapp.com/word";
+  const urlRandWord = "https://api.api-ninjas.com/v1/randomword";
+
+  const [data, setData] = useState({ word: "test" });
   const [def, setDef] = useState({ definition: "Testy", word: "Test me" });
   let favouritesObj = [];
 
   //Gets a random word
 
   const fetchWord = () => {
-    return fetch(urlRandWord)
+    return fetch(urlRandWord, {
+      headers: {
+        "X-Api-Key": "kOSm5RXchY0yvNn5T92DTA==NDQfoMYMJrnpymsK",
+      },
+    })
       .then((response) => response.json())
       .then((data) => {
         setData(data);
@@ -32,7 +38,7 @@ const Card = () => {
   //Gets the definition of the random word
   const fetchDef = () => {
     fetchWord();
-    return fetch(`https://api.api-ninjas.com/v1/dictionary?word=${data}`, {
+    return fetch(`https://api.api-ninjas.com/v1/dictionary?word=${data.word}`, {
       headers: {
         "X-Api-Key": "kOSm5RXchY0yvNn5T92DTA==NDQfoMYMJrnpymsK",
       },
@@ -50,9 +56,9 @@ const Card = () => {
   };
 
   return (
-    <div className="flex flex-col justify-center items-center w-1/3 p-5 m-20 rounded-2xl shadow-xl bg-white bg-opacity-15">
+    <div className="flex flex-col justify-center items-center w-full p-5 m-10 rounded-2xl shadow-xl bg-white bg-opacity-40">
       <h1 className="font-bold uppercase mb-5 border-b-2 border-red-200 w-full text-slate-700">
-        {def.word}
+        {data.word}
       </h1>
       <div className="flex flex-col gap-5">
         <div className="mb-3 m-2">
