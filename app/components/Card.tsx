@@ -13,63 +13,64 @@ const Card = () => {
   const heartStyleRed = { color: "black", fontSize: "1.3em" };
 
   //Variables
-  //const urlRandWord = "https://random-word-api.herokuapp.com/word";
-  const urlRandWord = "https://api.api-ninjas.com/v1/randomword";
 
-  const [data, setData] = useState({ word: "test" });
-  const [def, setDef] = useState({ definition: "Testy", word: "Test me" });
-  let favouritesObj = [];
+  //const urlRandWord = "https://api.api-ninjas.com/v1/randomword";
 
-  //Gets a random word
+  const [randomWord, setRandomWord] = useState({ word: "Test" });
+  const [word, setWord] = useState();
+  const [def, setDef] = useState();
 
-  const fetchWord = () => {
-    return fetch(urlRandWord, {
-      headers: {
-        "X-Api-Key": "kOSm5RXchY0yvNn5T92DTA==NDQfoMYMJrnpymsK",
-      },
-    })
-      .then((response) => response.json())
-      .then((data) => {
-        setData(data);
-        console.log(data);
+  const fetchWord = async () => {
+    const urlRandWord = "https://api.api-ninjas.com/v1/randomword";
+    try {
+      const response = await fetch(urlRandWord, {
+        headers: {
+          "x-api-key": "kOSm5RXchY0yvNn5T92DTA==NDQfoMYMJrnpymsK",
+        },
       });
+      const json = await response.json();
+      const wordString = await json.word.toString();
+      setRandomWord({ word: wordString });
+      console.log(randomWord.word);
+    } catch (error) {
+      console.error(error);
+    }
   };
 
-  //Gets the definition of the random word
-  const fetchDef = () => {
-    fetchWord();
-    return fetch(`https://api.api-ninjas.com/v1/dictionary?word=${data.word}`, {
-      headers: {
-        "X-Api-Key": "kOSm5RXchY0yvNn5T92DTA==NDQfoMYMJrnpymsK",
-      },
-    })
-      .then((res) => {
-        if (!res.ok) {
-          throw Error(res.statusText);
-        }
-        return res.json();
-      })
-      .then((d) => {
-        setDef(d);
-        console.log(d);
-      });
+  const fetchDef = async () => {
+    const urlDefinition = `https://api.dictionaryapi.dev/api/v2/entries/en/${randomWord.word}`;
+    try {
+      const response = await fetch(urlDefinition);
+      //  {
+      //   headers: {
+      //     "x-api-key": "kOSm5RXchY0yvNn5T92DTA==NDQfoMYMJrnpymsK",
+      //   },
+      // });
+      const defJson = await response.json();
+      const definition = defJson[0].meanings[0].definitions[0].definition;
+      console.log(defJson);
+      if (definition != undefined) {
+        setDef(definition);
+        setWord(defJson[0].word);
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  const fetchWhole = async () => {
+    fetchWord().then(fetchDef);
   };
 
   return (
     <div className="flex flex-col justify-center items-center w-full p-5 m-10 rounded-2xl shadow-xl bg-white bg-opacity-40">
       <h1 className="font-bold uppercase mb-5 border-b-2 border-red-200 w-full text-slate-700">
-        {data.word}
+        {word}
       </h1>
       <div className="flex flex-col gap-5">
         <div className="mb-3 m-2">
           <h3 className="font-semibold text-slate-700">Definition</h3>
-          <p className="text-slate-500">{def.definition}</p>
-        </div>
-        <div className="mb-3 m-2">
-          <h3 className="font-semibold text-slate-700">Example Sentence</h3>
-          <p className="text-slate-500">
-            I grew up happily under the benevolent influence of my Uncle Walt.
-          </p>
+          <p className="text-slate-500">{def}</p>
         </div>
       </div>
       <div className="flex w-full justify-evenly m-2 p-2">
@@ -88,7 +89,7 @@ const Card = () => {
         <FaArrowRight
           style={style}
           className="hover:scale-110 transition-all opacity-80"
-          onClick={fetchDef}
+          onClick={fetchWhole}
         />
       </div>
     </div>

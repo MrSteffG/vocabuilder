@@ -13,29 +13,11 @@ export default function Home() {
           <Searchbar />
           <Card />
         </div>
-        <div className="flex flex-col w-1/3 justify-end items-start">
+        <div className="flex flex-col w-1/3 justify-center items-center">
           <SavedWords />
         </div>
       </div>
       <Footer />
     </div>
   );
-
-  // return (
-  //   <div className="flex flex-col justify-between items-center bg-gradient-to-tr w-full h-screen from-sky-100 via-emerald-50 to-yellow-100">
-  //     <div className="flex justify-center items-center w-full">
-  //       <div className="flex flex-col justify-center w-full">
-  //         <Navbar />
-  //         <Searchbar />
-  //         <Card />
-  //       </div>
-  //       <div>
-  //         <SavedWords />
-  //       </div>
-  //     </div>
-  //     <div className="flex justify-end self-end">
-  //       <Footer />
-  //     </div>
-  //   </div>
-  // );
 }
