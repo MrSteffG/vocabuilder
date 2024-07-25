@@ -4,7 +4,7 @@ const SavedWords = () => {
   const wordArray = ["Benevolent", "Rich", "Meaning"];
 
   const randomWords = wordArray.map((dataObj) => (
-    <h3 className="font-semibold text-slate-700 hover:scale-105 hover:bg-gradient-to-l hover:from-yellow-50 hover:to-red-50 w-full p-2 rounded-xl transition-all duration-500">
+    <h3 className="font-semibold text-slate-700 hover:scale-105 hover:bg-gradient-to-l hover:from-red-100 hover:via-purple-100 hover:to-blue-100 w-full p-2 rounded-xl transition-all duration-500">
       {dataObj}
     </h3>
   ));
@@ -14,7 +14,7 @@ const SavedWords = () => {
       <h1 className="font-bold mb-5 border-b-2 border-red-200 w-full text-slate-700">
         Saved Words
       </h1>
-      <div className="flex flex-col justify-start m-2 gap-3 w-full">
+      <div className="flex flex-col justify-start m-2 gap-3 w-full pr-3">
         {randomWords}
       </div>
     </div>
