@@ -40,9 +40,9 @@ export default function Home() {
   };
 
   return (
-    <div className="flex flex-col h-screen justify-start bg-gradient-to-tr from-sky-100 via-emerald-50 to-yellow-100">
+    <div className="flex flex-col h-full justify-start bg-gradient-to-tr from-sky-100 via-emerald-50 to-yellow-100">
       <Navbar />
-      <div className="flex max-md:flex-col max-md:items-center justify-center items-start gap-10 mt-10">
+      <div className="flex max-md:flex-col h-screen max-md:items-center justify-center items-start gap-10 mt-10">
         <div className="flex flex-col w-1/3 max-md:w-2/3 justify-center items-center">
           <Searchbar fetchSavedDef={fetchSavedDef} />
           <Card

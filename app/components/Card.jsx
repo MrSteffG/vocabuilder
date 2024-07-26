@@ -69,8 +69,8 @@ const Card = ({
       <h1 className="font-bold uppercase mb-5 border-b-2 border-red-200 w-full text-slate-700">
         {word}
       </h1>
-      <div className="flex flex-col gap-5">
-        <div className="mb-3 m-2">
+      <div className="flex flex-col gap-5 w-full">
+        <div className="mb-3 m-2 justify-start">
           <h3 className="font-semibold text-slate-700">Definition</h3>
           <p className="text-slate-500">{def}</p>
         </div>

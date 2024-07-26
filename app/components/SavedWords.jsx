@@ -1,16 +1,24 @@
 "use client";
 
 import React, { useState } from "react";
+import { MdOutlineDeleteOutline } from "react-icons/md";
 
 const SavedWords = ({ favourites, fetchSavedDef }) => {
+  const style = { color: "black", fontSize: "1.3em" };
+
   const randomWords = favourites.map((word) => (
-    <h3
-      key={word}
-      onClick={() => fetchSavedDef(word)}
-      className="font-semibold text-slate-700 hover:scale-105 hover:bg-gradient-to-l hover:from-red-100 hover:via-purple-100 hover:to-blue-100 w-full p-2 rounded-xl transition-all duration-500"
-    >
-      {word}
-    </h3>
+    <div className="flex justify-between items-center hover:bg-gradient-to-l hover:scale-105 hover:from-red-100 hover:via-purple-100 hover:to-blue-100 w-full p-2 rounded-xl transition-all duration-500">
+      <h3
+        key={word}
+        onClick={() => fetchSavedDef(word)}
+        className="font-semibold text-slate-700"
+      >
+        {word}
+      </h3>
+      <div className="z-10 opacity-30 hover:opacity-80 p-2">
+        <MdOutlineDeleteOutline style={style} className="" />
+      </div>
+    </div>
   ));
 
   return (
