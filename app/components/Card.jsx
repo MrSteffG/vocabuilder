@@ -7,15 +7,12 @@ import { FaArrowRight } from "react-icons/fa";
 import { FaArrowLeft } from "react-icons/fa";
 import { useState } from "react";
 
-const Card = () => {
+const Card = ({ addWord }) => {
   //styles for icons
   const style = { color: "black", fontSize: "1.3em" };
   const heartStyleRed = { color: "black", fontSize: "1.3em" };
 
   //Variables
-
-  //const urlRandWord = "https://api.api-ninjas.com/v1/randomword";
-
   const [randomWord, setRandomWord] = useState({ word: "Test" });
   const [word, setWord] = useState();
   const [def, setDef] = useState();
@@ -41,11 +38,6 @@ const Card = () => {
     const urlDefinition = `https://api.dictionaryapi.dev/api/v2/entries/en/${randomWord.word}`;
     try {
       const response = await fetch(urlDefinition);
-      //  {
-      //   headers: {
-      //     "x-api-key": "kOSm5RXchY0yvNn5T92DTA==NDQfoMYMJrnpymsK",
-      //   },
-      // });
       const defJson = await response.json();
       const definition = defJson[0].meanings[0].definitions[0].definition;
       console.log(defJson);
@@ -81,6 +73,7 @@ const Card = () => {
         <FaHeart
           style={style}
           className="hover:scale-110 transition-all opacity-80"
+          onClick={addWord}
         />
         <FaShare
           style={style}

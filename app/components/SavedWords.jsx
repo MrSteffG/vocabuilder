@@ -1,9 +1,9 @@
-import React from "react";
+"use client";
 
-const SavedWords = () => {
-  const wordArray = ["Benevolent", "Rich", "Meaning"];
+import React, { useState } from "react";
 
-  const randomWords = wordArray.map((dataObj) => (
+const SavedWords = ({ favourites, addWord }) => {
+  const randomWords = favourites.map((dataObj) => (
     <h3
       key={dataObj}
       className="font-semibold text-slate-700 hover:scale-105 hover:bg-gradient-to-l hover:from-red-100 hover:via-purple-100 hover:to-blue-100 w-full p-2 rounded-xl transition-all duration-500"
@@ -18,8 +18,9 @@ const SavedWords = () => {
         Saved Words
       </h1>
       <div className="flex flex-col justify-start m-2 gap-3 w-full pr-3">
-        {/* {randomWords} */}
+        {randomWords}
       </div>
+      <button>Addword</button>
     </div>
   );
 };
