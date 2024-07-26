@@ -7,16 +7,25 @@ import { FaArrowRight } from "react-icons/fa";
 import { FaArrowLeft } from "react-icons/fa";
 import { useState } from "react";
 
-const Card = ({ addWord }) => {
+const Card = ({
+  addWord,
+  randomWord,
+  setRandomWord,
+  word,
+  setWord,
+  def,
+  setDef,
+}) => {
   //styles for icons
   const style = { color: "black", fontSize: "1.3em" };
   const heartStyleRed = { color: "black", fontSize: "1.3em" };
 
-  //Variables
-  const [randomWord, setRandomWord] = useState({ word: "Test" });
-  const [word, setWord] = useState();
-  const [def, setDef] = useState();
+  //   //Variables
+  //   const [randomWord, setRandomWord] = useState({ word: "Test" });
+  //   const [word, setWord] = useState();
+  //   const [def, setDef] = useState();
 
+  //Fetches a random word
   const fetchWord = async () => {
     const urlRandWord = "https://api.api-ninjas.com/v1/randomword";
     try {
@@ -27,31 +36,32 @@ const Card = ({ addWord }) => {
       });
       const json = await response.json();
       const wordString = await json.word.toString();
-      setRandomWord({ word: wordString });
-      console.log(randomWord.word);
+      setRandomWord(wordString);
+      console.log(`Random word is ${randomWord}`);
     } catch (error) {
       console.error(error);
     }
   };
 
-  const fetchDef = async () => {
-    const urlDefinition = `https://api.dictionaryapi.dev/api/v2/entries/en/${randomWord.word}`;
+  //Fetches the definition of the randomWord
+  const fetchDef = async (word) => {
+    const urlDefinition = `https://api.dictionaryapi.dev/api/v2/entries/en/${word}`;
     try {
       const response = await fetch(urlDefinition);
       const defJson = await response.json();
       const definition = defJson[0].meanings[0].definitions[0].definition;
-      console.log(defJson);
       if (definition != undefined) {
         setDef(definition);
         setWord(defJson[0].word);
       }
     } catch (error) {
       console.error(error);
+      console.log("Undefined word");
     }
   };
 
   const fetchWhole = async () => {
-    fetchWord().then(fetchDef);
+    fetchWord().then(fetchDef(randomWord));
   };
 
   return (
