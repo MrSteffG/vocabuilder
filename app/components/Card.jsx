@@ -60,6 +60,7 @@ const Card = ({
     }
   };
 
+  //gets the random word which is passed into the function to fetch its definition
   const fetchWhole = async () => {
     fetchWord().then(fetchDef(randomWord));
   };

@@ -13,16 +13,7 @@ export default function Home() {
   const [word, setWord] = useState();
   const [def, setDef] = useState();
 
-  const [favourites, setFavourites] = useState([
-    "Benevolent",
-    "Rich",
-    "Meaning",
-  ]);
-
-  const addWord = () => {
-    setFavourites([...favourites, word]);
-  };
-
+  //fetches the definition of the selected favourite word
   const fetchSavedDef = async (word) => {
     const urlDefinition = `https://api.dictionaryapi.dev/api/v2/entries/en/${word}`;
     try {
@@ -40,13 +31,12 @@ export default function Home() {
   };
 
   return (
-    <div className="flex flex-col h-full justify-start bg-gradient-to-tr from-sky-100 via-emerald-50 to-yellow-100">
+    <div className="flex flex-col h-full items-center bg-gradient-to-tr from-sky-100 via-emerald-50 to-yellow-100">
       <Navbar />
-      <div className="flex max-md:flex-col h-screen max-md:items-center justify-center items-start gap-10 mt-10">
-        <div className="flex flex-col w-1/3 max-md:w-2/3 justify-center items-center">
+      <div className="flex items-start h-screen w-2/3 gap-10 mt-10">
+        <div className="flex flex-col w-2/3 max-md:w-2/3 justify-center items-center">
           <Searchbar fetchSavedDef={fetchSavedDef} />
           <Card
-            addWord={addWord}
             randomWord={randomWord}
             setRandomWord={setRandomWord}
             word={word}
@@ -56,12 +46,7 @@ export default function Home() {
           />
         </div>
         <div className="flex flex-col w-1/3 max-md:w-2/3 justify-center items-center">
-          <SavedWords
-            favourites={favourites}
-            addWord={addWord}
-            setWord={setWord}
-            fetchSavedDef={fetchSavedDef}
-          />
+          <SavedWords setWord={setWord} fetchSavedDef={fetchSavedDef} />
         </div>
       </div>
       <Footer />
