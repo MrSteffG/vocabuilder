@@ -1,5 +1,12 @@
 import React from "react";
 import { FaUser } from "react-icons/fa";
+import {
+  ClerkProvider,
+  SignInButton,
+  SignedIn,
+  SignedOut,
+  UserButton,
+} from "@clerk/nextjs";
 
 const Navbar = () => {
   const userStyle = { color: "white", fontSize: "1.2em" };
@@ -13,9 +20,12 @@ const Navbar = () => {
           </h1>
         </div>
 
-        <div className="bg-black p-2 rounded-full hover:scale-105 transition-all duration-300 hover:bg-gradient-to-tr from-red-500 via-purple-500 to-blue-500">
-          <FaUser style={userStyle} />
-        </div>
+        <SignedOut>
+          <SignInButton />
+        </SignedOut>
+        <SignedIn>
+          <UserButton />
+        </SignedIn>
       </div>
     </section>
   );
