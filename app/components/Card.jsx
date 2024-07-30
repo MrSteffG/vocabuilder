@@ -5,25 +5,10 @@ import { FaHeart } from "react-icons/fa";
 import { FaShare } from "react-icons/fa";
 import { FaArrowRight } from "react-icons/fa";
 import { FaArrowLeft } from "react-icons/fa";
-import { useState } from "react";
 
-const Card = ({
-  addWord,
-  randomWord,
-  setRandomWord,
-  word,
-  setWord,
-  def,
-  setDef,
-}) => {
+const Card = ({ addWord, randomWord, setRandomWord, defArr, setDefArr }) => {
   //styles for icons
   const style = { color: "black", fontSize: "1.3em" };
-  const heartStyleRed = { color: "black", fontSize: "1.3em" };
-
-  //   //Variables
-  //   const [randomWord, setRandomWord] = useState({ word: "Test" });
-  //   const [word, setWord] = useState();
-  //   const [def, setDef] = useState();
 
   //Fetches a random word
   const fetchWord = async () => {
@@ -43,24 +28,25 @@ const Card = ({
     }
   };
 
-  //Fetches the definition of the randomWord
+  //Fetches the definition of the randomWord and sets the word and definition to defArr with an id
   const fetchDef = async (word) => {
     const urlDefinition = `https://api.dictionaryapi.dev/api/v2/entries/en/${word}`;
     try {
       const response = await fetch(urlDefinition);
       const defJson = await response.json();
-      const definition = defJson[0].meanings[0].definitions[0].definition;
-      if (definition != undefined) {
-        setDef(definition);
-        setWord(defJson[0].word);
-      }
+      const definition = await defJson[0].meanings[0].definitions[0].definition;
+      console.log(defArr);
+      setDefArr({
+        id: Math.floor(Math.random() * 100),
+        word: defJson[0].word,
+        def: definition,
+      });
     } catch (error) {
-      console.error(error);
-      console.log("Undefined word");
+      console.log(error);
     }
   };
 
-  //gets the random word which is passed into the function to fetch its definition
+  // Gets the random word which is passed into the function to fetch its definition
   const fetchWhole = async () => {
     fetchWord().then(fetchDef(randomWord));
   };
@@ -68,12 +54,12 @@ const Card = ({
   return (
     <div className="flex flex-col justify-between items-center w-full p-5 rounded-2xl shadow-xl bg-white bg-opacity-20 h-full">
       <h1 className="font-bold uppercase mb-5 border-b-2 border-red-200 w-full text-slate-700">
-        {word}
+        {defArr.word}
       </h1>
       <div className="flex flex-col gap-5 w-full">
         <div className="mb-3 m-2 justify-start">
           <h3 className="font-semibold text-slate-700">Definition</h3>
-          <p className="text-slate-500">{def}</p>
+          <p className="text-slate-500">{defArr.def}</p>
         </div>
       </div>
       <div className="flex w-full justify-evenly m-2 p-2">
@@ -82,6 +68,8 @@ const Card = ({
           style={style}
           className="hover:scale-110 transition-all"
           onClick={addWord}
+          onMouseOver={({ target }) => (target.style.color = "red")}
+          onMouseOut={({ target }) => (target.style.color = "black")}
         />
         <FaShare style={style} className="hover:scale-110 transition-all" />
         <FaArrowRight

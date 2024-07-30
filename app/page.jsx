@@ -11,9 +11,14 @@ import Hero from "./components/Hero";
 
 export default function Home() {
   //Variables
-  const [randomWord, setRandomWord] = useState("Steff");
+  const [randomWord, setRandomWord] = useState("Hello");
   const [word, setWord] = useState();
   const [def, setDef] = useState();
+  const [defArr, setDefArr] = useState({
+    id: Math.floor(Math.random() * 100),
+    word: "definition",
+    def: "this is a definition",
+  });
 
   //fetches the definition of the selected favourite word
   const fetchSavedDef = async (word) => {
@@ -21,14 +26,15 @@ export default function Home() {
     try {
       const response = await fetch(urlDefinition);
       const defJson = await response.json();
-      const definition = defJson[0].meanings[0].definitions[0].definition;
-      if (definition != undefined) {
-        setDef(definition);
-        setWord(defJson[0].word);
-      }
+      const definition = await defJson[0].meanings[0].definitions[0].definition;
+      console.log(defArr);
+      setDefArr({
+        id: Math.floor(Math.random() * 100),
+        word: defJson[0].word,
+        def: definition,
+      });
     } catch (error) {
-      console.error(error);
-      console.log("Undefined word");
+      console.log(error);
     }
   };
 
@@ -43,10 +49,10 @@ export default function Home() {
               <Card
                 randomWord={randomWord}
                 setRandomWord={setRandomWord}
-                word={word}
                 setWord={setWord}
-                def={def}
                 setDef={setDef}
+                defArr={defArr}
+                setDefArr={setDefArr}
               />
             </div>
             <div className="flex flex-col w-1/3 max-md:w-2/3 justify-center items-center h-full">
