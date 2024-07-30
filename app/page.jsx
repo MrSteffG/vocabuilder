@@ -55,7 +55,9 @@ export default function Home() {
           </div>
         </SignedIn>
         <SignedOut>
-          <Hero />
+          <div className="flex items-center justify-center">
+            <Hero />
+          </div>
         </SignedOut>
       </div>
       <Footer />

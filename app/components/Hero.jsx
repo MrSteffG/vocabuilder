@@ -3,8 +3,8 @@ import React from "react";
 
 const Hero = () => {
   return (
-    <div className="flex flex-col justify-center items-center h-4/5 gap-14">
-      <h1 className="font-extrabold text-8xl">
+    <div className="flex flex-col justify-center items-center h-4/5 gap-14 max-md:w-2/3">
+      <h1 className="font-extrabold text-8xl max-md:text-6xl">
         <span className="heroLetters">Expand</span> {""}
         <span className="heroLetters">your</span> {""}
         <span className="heroLetters">Vocabulary.</span>
