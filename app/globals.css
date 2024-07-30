@@ -2,6 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-.navButton {
-  @apply p-1 px-5 rounded-t-lg border-t-2 border-x-2 hover:text-white transition-all hover:scale-105;
+.actionButton {
+  @apply bg-gradient-to-tr from-red-400 via-purple-400 to-blue-400 rounded-full text-white font-semibold hover:bg-gradient-to-bl hover:scale-110 transition-all duration-300;
 }
