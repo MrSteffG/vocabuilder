@@ -3,5 +3,9 @@
 @tailwind utilities;
 
 .actionButton {
-  @apply bg-gradient-to-tr from-red-400 via-purple-400 to-blue-400 rounded-full text-white font-semibold hover:bg-gradient-to-bl hover:scale-110 transition-all duration-300;
+  @apply bg-gradient-to-tr from-red-500 via-purple-500 to-blue-500 rounded-full text-white font-semibold hover:bg-gradient-to-bl hover:scale-110 transition-all duration-300;
+}
+
+.heroLetters {
+  @apply text-black hover:bg-gradient-to-r hover:from-red-500 hover:via-purple-500 hover:to-blue-500 hover:bg-clip-text hover:text-transparent transition-all;
 }
