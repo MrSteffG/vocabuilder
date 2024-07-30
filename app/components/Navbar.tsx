@@ -12,17 +12,19 @@ const Navbar = () => {
   const userStyle = { color: "white", fontSize: "1.2em" };
 
   return (
-    <section className="flex justify-center items-center w-screen shadow-md bg-white bg-opacity-40 fixed">
+    <section className="flex justify-center items-center w-screen shadow-md bg-black fixed">
       <div className="flex justify-between items-center px-10 w-3/4">
         <div className="flex items-center justify-center p-3">
-          <h1 className="bg-gradient-to-r from-red-500 via-purple-500 to-blue-500 bg-clip-text text-transparent uppercase px-7 rounded-lg font-bold text-2xl hover:scale-105 transition-all">
+          <h1 className="text-white hover:bg-gradient-to-r hover:from-red-400 hover:via-purple-400 hover:to-blue-400 hover:bg-clip-text hover:text-transparent uppercase px-7 rounded-lg font-bold text-2xl hover:scale-105 transition-all">
             Vocabuilder
           </h1>
         </div>
 
         <SignedOut>
           <SignInButton>
-            <button className="actionButton p-2">Sign in</button>
+            <button className="text-white hover:bg-gradient-to-r hover:from-red-400 hover:via-purple-400 hover:to-blue-400 hover:bg-clip-text hover:text-transparent uppercase rounded-lg font-bold hover:scale-105 transition-all">
+              Sign in
+            </button>
           </SignInButton>
         </SignedOut>
         <SignedIn>
