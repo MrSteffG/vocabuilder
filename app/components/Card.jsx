@@ -66,7 +66,7 @@ const Card = ({
   };
 
   return (
-    <div className="flex flex-col justify-center items-center w-full p-5 m-10 rounded-2xl shadow-xl bg-white bg-opacity-40">
+    <div className="flex flex-col justify-between items-center w-full p-5 rounded-2xl shadow-xl bg-white bg-opacity-40 h-full border-2">
       <h1 className="font-bold uppercase mb-5 border-b-2 border-red-200 w-full text-slate-700">
         {word}
       </h1>
@@ -77,22 +77,16 @@ const Card = ({
         </div>
       </div>
       <div className="flex w-full justify-evenly m-2 p-2">
-        <FaArrowLeft
-          style={style}
-          className="hover:scale-110 transition-all opacity-80"
-        />
+        <FaArrowLeft style={style} className="hover:scale-110 transition-all" />
         <FaHeart
           style={style}
-          className="hover:scale-110 transition-all opacity-80"
+          className="hover:scale-110 transition-all"
           onClick={addWord}
         />
-        <FaShare
-          style={style}
-          className="hover:scale-110 transition-all opacity-80"
-        />
+        <FaShare style={style} className="hover:scale-110 transition-all" />
         <FaArrowRight
           style={style}
-          className="hover:scale-110 transition-all opacity-80"
+          className="hover:scale-110 transition-all"
           onClick={fetchWhole}
         />
       </div>

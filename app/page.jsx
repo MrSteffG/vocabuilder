@@ -35,21 +35,23 @@ export default function Home() {
   return (
     <div className="flex flex-col h-full items-center bg-gradient-to-tr from-sky-100 via-emerald-50 to-yellow-100">
       <Navbar />
-      <div className="flex items-start h-screen w-2/3 gap-10 mt-10">
+      <div className="flex items-center h-screen w-2/3">
         <SignedIn>
-          <div className="flex flex-col w-2/3 max-md:w-2/3 justify-center items-center">
-            <Searchbar fetchSavedDef={fetchSavedDef} />
-            <Card
-              randomWord={randomWord}
-              setRandomWord={setRandomWord}
-              word={word}
-              setWord={setWord}
-              def={def}
-              setDef={setDef}
-            />
-          </div>
-          <div className="flex flex-col w-1/3 max-md:w-2/3 justify-center items-center">
-            <SavedWords setWord={setWord} fetchSavedDef={fetchSavedDef} />
+          <div className="flex w-full gap-10 h-2/5">
+            <div className="flex flex-col w-2/3 max-md:w-2/3 h-full justify-start items-center gap-10">
+              <Searchbar fetchSavedDef={fetchSavedDef} />
+              <Card
+                randomWord={randomWord}
+                setRandomWord={setRandomWord}
+                word={word}
+                setWord={setWord}
+                def={def}
+                setDef={setDef}
+              />
+            </div>
+            <div className="flex flex-col w-1/3 max-md:w-2/3 justify-center items-center h-full">
+              <SavedWords setWord={setWord} fetchSavedDef={fetchSavedDef} />
+            </div>
           </div>
         </SignedIn>
         <SignedOut>
