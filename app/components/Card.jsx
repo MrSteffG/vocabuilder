@@ -66,7 +66,7 @@ const Card = ({
   };
 
   return (
-    <div className="flex flex-col justify-between items-center w-full p-5 rounded-2xl shadow-xl bg-white bg-opacity-40 h-full border-2">
+    <div className="flex flex-col justify-between items-center w-full p-5 rounded-2xl shadow-xl bg-white bg-opacity-20 h-full">
       <h1 className="font-bold uppercase mb-5 border-b-2 border-red-200 w-full text-slate-700">
         {word}
       </h1>

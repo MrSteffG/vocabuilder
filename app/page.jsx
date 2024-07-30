@@ -35,10 +35,10 @@ export default function Home() {
   return (
     <div className="flex flex-col h-full items-center bg-gradient-to-tr from-sky-100 via-emerald-50 to-yellow-100">
       <Navbar />
-      <div className="flex items-center h-screen w-2/3">
+      <div className="flex items-center h-screen w-2/3 max-md:w-full">
         <SignedIn>
-          <div className="flex w-full gap-10 h-2/5">
-            <div className="flex flex-col w-2/3 max-md:w-2/3 h-full justify-start items-center gap-10">
+          <div className="flex w-full gap-10 h-2/5 max-md:flex-col max-md:w-full max-md:items-center">
+            <div className="flex flex-col w-2/3 h-full justify-start items-center gap-10">
               <Searchbar fetchSavedDef={fetchSavedDef} />
               <Card
                 randomWord={randomWord}

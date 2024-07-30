@@ -15,7 +15,7 @@ const Searchbar = ({ fetchSavedDef }) => {
   };
 
   return (
-    <div className="flex w-full items-center justify-center rounded-2xl shadow-xl bg-white bg-opacity-40 outline-none border-2">
+    <div className="flex w-full items-center justify-center rounded-2xl shadow-xl bg-white bg-opacity-20 outline-none">
       <input
         type="text"
         placeholder="Search..."

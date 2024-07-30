@@ -15,8 +15,11 @@ const Navbar = () => {
     <section className="flex justify-center items-center w-screen shadow-md bg-black fixed">
       <div className="flex justify-between items-center px-10 w-3/4">
         <div className="flex items-center justify-center p-3">
-          <h1 className="text-white hover:bg-gradient-to-r hover:from-red-400 hover:via-purple-400 hover:to-blue-400 hover:bg-clip-text hover:text-transparent uppercase px-7 rounded-lg font-bold text-2xl hover:scale-105 transition-all">
+          <h1 className="text-white hover:bg-gradient-to-r hover:from-red-400 hover:via-purple-400 hover:to-blue-400 hover:bg-clip-text hover:text-transparent uppercase px-7 rounded-lg font-bold text-2xl hover:scale-105 transition-all max-md:hidden">
             Vocabuilder
+          </h1>
+          <h1 className="text-white hover:bg-gradient-to-r hover:from-red-400 hover:via-purple-400 hover:to-blue-400 hover:bg-clip-text hover:text-transparent uppercase px-7 rounded-lg font-bold text-2xl opacity-0 max-md:opacity-100 ">
+            V
           </h1>
         </div>
 

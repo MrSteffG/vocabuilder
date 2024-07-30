@@ -17,7 +17,7 @@ const SavedWords = () => {
   // ));
 
   return (
-    <div className="flex flex-col justify-start items-start w-full p-5 rounded-2xl shadow-xl bg-white bg-opacity-40 h-full overflow-scroll border-2">
+    <div className="flex flex-col justify-start items-start w-full p-5 rounded-2xl shadow-xl bg-white bg-opacity-20 h-full overflow-scroll">
       <h1 className="font-bold mb-5 border-b-2 border-red-200 w-full text-slate-700">
         Favourites
       </h1>
