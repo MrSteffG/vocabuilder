@@ -12,20 +12,20 @@ const Navbar = () => {
   const userStyle = { color: "white", fontSize: "1.2em" };
 
   return (
-    <section className="flex justify-center items-center w-screen shadow-md bg-black fixed">
-      <div className="flex justify-between items-center px-10 w-3/4">
+    <section className="fixed flex w-screen items-center justify-center bg-black shadow-md">
+      <div className="flex w-3/4 items-center justify-between px-10">
         <div className="flex items-center justify-center p-3">
-          <h1 className="text-white hover:bg-gradient-to-r hover:from-red-400 hover:via-purple-400 hover:to-blue-400 hover:bg-clip-text hover:text-transparent uppercase px-7 rounded-lg font-bold text-2xl hover:scale-105 transition-all max-md:hidden">
+          <h1 className="rounded-lg px-7 text-2xl font-bold uppercase text-white transition-all hover:scale-105 hover:bg-gradient-to-r hover:from-red-400 hover:via-purple-400 hover:to-blue-400 hover:bg-clip-text hover:text-transparent max-md:hidden">
             Vocabuilder
           </h1>
-          <h1 className="text-white hover:bg-gradient-to-r hover:from-red-400 hover:via-purple-400 hover:to-blue-400 hover:bg-clip-text hover:text-transparent uppercase px-7 rounded-lg font-bold text-2xl opacity-0 max-md:opacity-100 ">
+          <h1 className="rounded-lg px-7 text-2xl font-bold uppercase text-white opacity-0 hover:bg-gradient-to-r hover:from-red-400 hover:via-purple-400 hover:to-blue-400 hover:bg-clip-text hover:text-transparent max-md:opacity-100">
             V
           </h1>
         </div>
 
         <SignedOut>
           <SignInButton>
-            <button className="text-white hover:bg-gradient-to-r hover:from-red-400 hover:via-purple-400 hover:to-blue-400 hover:bg-clip-text hover:text-transparent uppercase rounded-lg font-bold hover:scale-105 transition-all">
+            <button className="rounded-lg font-bold uppercase text-white transition-all hover:scale-105 hover:bg-gradient-to-r hover:from-red-400 hover:via-purple-400 hover:to-blue-400 hover:bg-clip-text hover:text-transparent">
               Sign in
             </button>
           </SignInButton>

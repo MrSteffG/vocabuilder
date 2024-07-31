@@ -52,29 +52,29 @@ const Card = ({ randomWord, setRandomWord, defArr, setDefArr, saveWord }) => {
   };
 
   return (
-    <div className="flex flex-col justify-between items-center w-full p-5 rounded-2xl shadow-xl bg-white bg-opacity-20 h-full">
-      <h1 className="font-bold uppercase mb-5 border-b-2 border-purple-400 w-full text-slate-700">
+    <div className="flex h-full w-full flex-col items-center justify-between rounded-2xl bg-white bg-opacity-20 p-5 shadow-xl">
+      <h1 className="mb-5 w-full border-b-2 border-purple-400 font-bold uppercase text-slate-700">
         {defArr.word}
       </h1>
-      <div className="flex flex-col gap-5 w-full">
-        <div className="mb-3 m-2 justify-start">
+      <div className="flex w-full flex-col gap-5">
+        <div className="m-2 mb-3 justify-start">
           <h3 className="font-semibold text-slate-700">Definition</h3>
           <p className="text-slate-500">{defArr.def}</p>
         </div>
       </div>
-      <div className="flex w-full justify-evenly m-2 p-2">
-        <FaArrowLeft style={style} className="hover:scale-110 transition-all" />
+      <div className="m-2 flex w-full justify-evenly p-2">
+        <FaArrowLeft style={style} className="transition-all hover:scale-110" />
         <FaHeart
           style={style}
-          className="hover:scale-110 transition-all"
+          className="transition-all hover:scale-110"
           onClick={saveWord}
           onMouseOver={({ target }) => (target.style.color = "red")}
           onMouseOut={({ target }) => (target.style.color = "black")}
         />
-        <FaShare style={style} className="hover:scale-110 transition-all" />
+        <FaShare style={style} className="transition-all hover:scale-110" />
         <FaArrowRight
           style={style}
-          className="hover:scale-110 transition-all"
+          className="transition-all hover:scale-110"
           onClick={fetchWhole}
         />
       </div>
