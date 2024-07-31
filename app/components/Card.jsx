@@ -6,7 +6,7 @@ import { FaShare } from "react-icons/fa";
 import { FaArrowRight } from "react-icons/fa";
 import { FaArrowLeft } from "react-icons/fa";
 
-const Card = ({ addWord, randomWord, setRandomWord, defArr, setDefArr }) => {
+const Card = ({ randomWord, setRandomWord, defArr, setDefArr, saveWord }) => {
   //styles for icons
   const style = { color: "black", fontSize: "1.3em" };
 
@@ -53,7 +53,7 @@ const Card = ({ addWord, randomWord, setRandomWord, defArr, setDefArr }) => {
 
   return (
     <div className="flex flex-col justify-between items-center w-full p-5 rounded-2xl shadow-xl bg-white bg-opacity-20 h-full">
-      <h1 className="font-bold uppercase mb-5 border-b-2 border-red-200 w-full text-slate-700">
+      <h1 className="font-bold uppercase mb-5 border-b-2 border-purple-400 w-full text-slate-700">
         {defArr.word}
       </h1>
       <div className="flex flex-col gap-5 w-full">
@@ -67,7 +67,7 @@ const Card = ({ addWord, randomWord, setRandomWord, defArr, setDefArr }) => {
         <FaHeart
           style={style}
           className="hover:scale-110 transition-all"
-          onClick={addWord}
+          onClick={saveWord}
           onMouseOver={({ target }) => (target.style.color = "red")}
           onMouseOut={({ target }) => (target.style.color = "black")}
         />

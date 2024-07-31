@@ -12,13 +12,19 @@ import Hero from "./components/Hero";
 export default function Home() {
   //Variables
   const [randomWord, setRandomWord] = useState("Hello");
-  const [word, setWord] = useState();
-  const [def, setDef] = useState();
+
   const [defArr, setDefArr] = useState({
     id: Math.floor(Math.random() * 100),
     word: "definition",
     def: "this is a definition",
   });
+  const [favouritesArr, setFavouritesArr] = useState([
+    {
+      id: Math.floor(Math.random() * 100),
+      word: "test",
+      def: "this is a test",
+    },
+  ]);
 
   //fetches the definition of the selected favourite word
   const fetchSavedDef = async (word) => {
@@ -38,6 +44,10 @@ export default function Home() {
     }
   };
 
+  const saveWord = () => {
+    setFavouritesArr([...favouritesArr, defArr]);
+  };
+
   return (
     <div className="flex flex-col h-full items-center bg-gradient-to-tr from-sky-100 via-emerald-50 to-yellow-100">
       <Navbar />
@@ -49,14 +59,17 @@ export default function Home() {
               <Card
                 randomWord={randomWord}
                 setRandomWord={setRandomWord}
-                setWord={setWord}
-                setDef={setDef}
                 defArr={defArr}
                 setDefArr={setDefArr}
+                saveWord={saveWord}
               />
             </div>
             <div className="flex flex-col w-1/3 max-md:w-2/3 justify-center items-center h-full">
-              <SavedWords setWord={setWord} fetchSavedDef={fetchSavedDef} />
+              <SavedWords
+                fetchSavedDef={fetchSavedDef}
+                favouritesArr={favouritesArr}
+                setFavouritesArr={setFavouritesArr}
+              />
             </div>
           </div>
         </SignedIn>
