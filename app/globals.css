@@ -3,9 +3,21 @@
 @tailwind utilities;
 
 .actionButton {
-  @apply bg-gradient-to-tr from-red-500 via-purple-500 to-blue-500 rounded-full text-white font-semibold hover:bg-gradient-to-bl hover:scale-110 transition-all duration-300;
+  @apply rounded-full bg-gradient-to-tr from-red-500 via-purple-500 to-blue-500 font-semibold text-white transition-all duration-300 hover:scale-110 hover:bg-gradient-to-bl;
 }
 
 .heroLetters {
-  @apply text-black hover:bg-gradient-to-r hover:from-red-500 hover:via-purple-500 hover:to-blue-500 hover:bg-clip-text hover:text-transparent transition-all;
+  @apply text-black transition-all hover:bg-gradient-to-r hover:from-red-500 hover:via-purple-500 hover:to-blue-500 hover:bg-clip-text hover:text-transparent;
+}
+
+@layer utilities {
+  /* Hide scrollbar for Chrome, Safari and Opera */
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  /* Hide scrollbar for IE, Edge and Firefox */
+  .no-scrollbar {
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
+  }
 }

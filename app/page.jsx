@@ -6,14 +6,13 @@ import Footer from "./components/Footer";
 import Navbar from "./components/Navbar";
 import SavedWords from "./components/SavedWords";
 import Searchbar from "./components/Searchbar";
+import TestCard from "./components/TestCard";
 import React, { useEffect, useState } from "react";
 import Hero from "./components/Hero";
-import { createClient } from "@supabase/supabase-js";
 import supabase from "./config/supabaseClient";
 
 export default function Home() {
   const [fetchError, setFetchErr] = useState(null);
-  // const [favouritesArr, setFavouritesArr] = useState();
   const [favouritesArr, setFavouritesArr] = useState([
     {
       id: Math.floor(Math.random() * 100),
@@ -22,40 +21,34 @@ export default function Home() {
     },
   ]);
 
-  useEffect(() => {
-    const fetchFavourites = async () => {
-      const { data, error } = await supabase.from("favourites").select();
-      if (error) {
-        setFetchErr("Could not fetch the smoothies");
-        setFavouritesArr(null);
-        console.log(error);
-      }
-      if (data) {
-        setFavouritesArr(data);
-        setFetchErr(null);
-      }
-    };
-    fetchFavourites();
-  }, []);
-
-  //Variables
+  //State variables
   const [randomWord, setRandomWord] = useState("Hello");
-
   const [defArr, setDefArr] = useState({
-    id: Math.floor(Math.random() * 100),
+    // id: Math.floor(Math.random() * 100),
     word: "definition",
     def: "this is a definition",
   });
 
-  // const [favouritesArr, setFavouritesArr] = useState([
-  //   {
-  //     id: Math.floor(Math.random() * 100),
-  //     word: "test",
-  //     def: "this is a test",
-  //   },
-  // ]);
+  //fetches favourites from supabase
+  const fetchFavourites = async () => {
+    const { data, error } = await supabase.from("favourites").select();
+    if (error) {
+      setFetchErr("Could not fetch the smoothies");
+      setFavouritesArr(null);
+      console.log(error);
+    }
+    if (data) {
+      setFavouritesArr(data);
+      setFetchErr(null);
+    }
+  };
+
+  useEffect(() => {
+    fetchFavourites();
+  }, []);
 
   //fetches the definition of the selected favourite word
+  //TODO: condense this and fetchDef in page.jsx into one function
   const fetchSavedDef = async (word) => {
     const urlDefinition = `https://api.dictionaryapi.dev/api/v2/entries/en/${word}`;
     try {
@@ -73,8 +66,16 @@ export default function Home() {
     }
   };
 
-  const saveWord = () => {
-    setFavouritesArr([...favouritesArr, defArr]);
+  //Saves the current word in defArr to supabase favourites table
+  const saveWord = async () => {
+    const { data, error } = await supabase
+      .from("favourites")
+      .insert(defArr)
+      .select();
+    if (data) {
+      console.log(data);
+      fetchFavourites();
+    }
   };
 
   return (
@@ -98,6 +99,7 @@ export default function Home() {
                 fetchSavedDef={fetchSavedDef}
                 favouritesArr={favouritesArr}
                 setFavouritesArr={setFavouritesArr}
+                fetchError={fetchError}
               />
             </div>
           </div>
@@ -109,18 +111,7 @@ export default function Home() {
         </SignedOut>
       </div>
       <Footer />
-      <div>
-        {fetchError && <p>{fetchError}</p>}
-        {favouritesArr && (
-          <div className="flex h-60">
-            {favouritesArr.map((favourite) => (
-              <p className="" key={favourite.id}>
-                {favourite.word}
-              </p>
-            ))}
-          </div>
-        )}
-      </div>
+      <TestCard />
     </div>
   );
 }

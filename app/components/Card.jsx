@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useEffect } from "react";
 import { FaHeart } from "react-icons/fa";
 import { FaShare } from "react-icons/fa";
 import { FaArrowRight } from "react-icons/fa";
@@ -35,7 +35,6 @@ const Card = ({ randomWord, setRandomWord, defArr, setDefArr, saveWord }) => {
       const response = await fetch(urlDefinition);
       const defJson = await response.json();
       const definition = await defJson[0].meanings[0].definitions[0].definition;
-      console.log(defArr);
       setDefArr({
         id: Math.floor(Math.random() * 100),
         word: defJson[0].word,
@@ -47,6 +46,11 @@ const Card = ({ randomWord, setRandomWord, defArr, setDefArr, saveWord }) => {
   };
 
   // Gets the random word which is passed into the function to fetch its definition
+  useEffect(() => {
+    fetchWhole();
+  }, []);
+
+  //fetches random word then fetches the definition
   const fetchWhole = async () => {
     fetchWord().then(fetchDef(randomWord));
   };
