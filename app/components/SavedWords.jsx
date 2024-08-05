@@ -3,10 +3,10 @@
 import React from "react";
 import { MdOutlineDeleteOutline } from "react-icons/md";
 
-const SavedWords = ({ fetchSavedDef, favouritesArr, fetchError }) => {
+const SavedWords = ({ fetchSavedDef, favouritesArr }) => {
   const style = { color: "black", fontSize: "1.3em" };
 
-  //maps through the favourites array and returns each favourite word card.
+  // maps through the favourites array and returns each favourite word card.
   const favourites = favouritesArr.map((favourite) => (
     <div
       key={favourite.id}
@@ -26,7 +26,6 @@ const SavedWords = ({ fetchSavedDef, favouritesArr, fetchError }) => {
         Favourites
       </h1>
       <div className="m-2 flex w-full flex-col justify-start gap-3 pr-3 capitalize">
-        {fetchError && <p>{fetchError}</p>}
         {favourites}
       </div>
     </div>
