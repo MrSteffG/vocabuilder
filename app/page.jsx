@@ -96,14 +96,20 @@ export default function Home() {
   };
 
   //Saves the current word in defArr to supabase favourites table
+  const { session } = useSession();
+
   const saveWord = async () => {
+    const supabaseAccessToken = await session.getToken({
+      template: "Supabase",
+    });
+    const supabase = await supabaseClient(supabaseAccessToken);
     const { data, error } = await supabase
       .from("favourites")
-      .insert(defArr)
+      .insert({ word: defArr.word, def: defArr.def, user_id: session.user.id })
       .select();
     if (data) {
+      setFavouritesArr([...favouritesArr, data[0]]);
       console.log(data);
-      fetchFavourites();
     }
   };
 
