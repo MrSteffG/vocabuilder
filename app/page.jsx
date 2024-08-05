@@ -23,6 +23,7 @@ import React, { useEffect, useState } from "react";
 
 //Supabase imports
 import supabaseClient from "./config/supabaseClient";
+import Head from "next/head";
 
 export default function Home() {
   //State variables
@@ -45,9 +46,12 @@ export default function Home() {
     const { isSignedIn } = useUser();
 
     return (
-      <header className="mt-20 text-4xl font-bold">
+      <header className="mt-20 text-4xl font-semibold">
         {isSignedIn ? (
-          <div>Welcome back {user.firstName}</div>
+          <h1>
+            Welcome back
+            <span className="heroLetters"> {user.firstName}</span>
+          </h1>
         ) : (
           <div>not signed in m8</div>
         )}
@@ -98,23 +102,26 @@ export default function Home() {
       <div className="flex h-full w-full flex-col items-center justify-center border-2">
         <div className="flex h-screen w-2/3 items-center max-md:w-full">
           <SignedIn>
-            <div className="flex h-2/5 w-full gap-10 max-md:w-full max-md:flex-col max-md:items-center">
-              <div className="flex h-full w-2/3 flex-col items-center justify-start gap-10">
-                <Searchbar fetchSavedDef={fetchSavedDef} />
-                <Card
-                  randomWord={randomWord}
-                  setRandomWord={setRandomWord}
-                  defArr={defArr}
-                  setDefArr={setDefArr}
-                  saveWord={saveWord}
-                />
-              </div>
-              <div className="flex h-full w-1/3 flex-col items-center justify-center max-md:w-2/3">
-                <FavouritesList
-                  favouritesArr={favouritesArr}
-                  fetchSavedDef={fetchSavedDef}
-                  setFavouritesArr={setFavouritesArr}
-                />
+            <div className="mb-10 flex h-full w-full flex-col items-center justify-center gap-20">
+              <Header />
+              <div className="flex h-2/5 w-full gap-10 max-md:w-full max-md:flex-col max-md:items-center">
+                <div className="flex h-full w-2/3 flex-col items-center justify-start gap-10">
+                  <Searchbar fetchSavedDef={fetchSavedDef} />
+                  <Card
+                    randomWord={randomWord}
+                    setRandomWord={setRandomWord}
+                    defArr={defArr}
+                    setDefArr={setDefArr}
+                    saveWord={saveWord}
+                  />
+                </div>
+                <div className="flex h-full w-1/3 flex-col items-center justify-center max-md:w-2/3">
+                  <FavouritesList
+                    favouritesArr={favouritesArr}
+                    fetchSavedDef={fetchSavedDef}
+                    setFavouritesArr={setFavouritesArr}
+                  />
+                </div>
               </div>
             </div>
           </SignedIn>
