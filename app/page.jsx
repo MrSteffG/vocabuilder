@@ -25,6 +25,14 @@ import React, { useEffect, useState } from "react";
 import supabaseClient from "./config/supabaseClient";
 import Head from "next/head";
 
+import { Montserrat } from "next/font/google";
+
+//👇 Configure our font object
+const montserrat = Montserrat({
+  subsets: ["latin"],
+  display: "swap",
+});
+
 export default function Home() {
   //State variables
   const { isSignedIn, isLoading, user } = useUser();
@@ -48,12 +56,12 @@ export default function Home() {
     return (
       <header className="mt-20 text-4xl font-semibold">
         {isSignedIn ? (
-          <h1>
+          <h1 className={montserrat.className}>
             Welcome back
             <span className="heroLetters"> {user.firstName}</span>
           </h1>
         ) : (
-          <div>not signed in m8</div>
+          <div className=""></div>
         )}
       </header>
     );
@@ -92,7 +100,26 @@ export default function Home() {
       .select();
     if (data) {
       setFavouritesArr([...favouritesArr, data[0]]);
-      console.log(data);
+    }
+  };
+
+  const deleteFavourite = async (favouriteId, favouritesArr) => {
+    try {
+      const supabaseAccessToken = await session.getToken({
+        template: "Supabase",
+      });
+      const supabase = await supabaseClient(supabaseAccessToken);
+      const { data, error } = await supabase
+        .from("favourites")
+        .delete()
+        .eq("id", favouriteId)
+        .select("*");
+      setFavouritesArr((oldValues) => {
+        return oldValues.filter((favourites) => favourites.id !== favouriteId);
+      });
+    } catch (error) {
+      console.log("Catch statement, something went wrong" + error);
+    } finally {
     }
   };
 
@@ -120,6 +147,7 @@ export default function Home() {
                     favouritesArr={favouritesArr}
                     fetchSavedDef={fetchSavedDef}
                     setFavouritesArr={setFavouritesArr}
+                    deleteFavourite={deleteFavourite}
                   />
                 </div>
               </div>
