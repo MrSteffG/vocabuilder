@@ -38,7 +38,8 @@ export default function Home() {
   const { isSignedIn, isLoading, user } = useUser();
   const { session } = useSession();
   const [randomWord, setRandomWord] = useState("Hello");
-  const [defArr, setDefArr] = useState({
+
+  const [defObj, setDefObj] = useState({
     word: "definition",
     def: "this is a definition",
   });
@@ -49,6 +50,7 @@ export default function Home() {
       def: "this is a test",
     },
   ]);
+  const [wordArr, setWordArr] = useState([defObj]);
 
   const Header = () => {
     const { isSignedIn } = useUser();
@@ -75,8 +77,8 @@ export default function Home() {
       const response = await fetch(urlDefinition);
       const defJson = await response.json();
       const definition = await defJson[0].meanings[0].definitions[0].definition;
-      console.log(defArr);
-      setDefArr({
+      console.log(defObj);
+      setDefObj({
         id: Math.floor(Math.random() * 100),
         word: defJson[0].word,
         def: definition,
@@ -88,7 +90,7 @@ export default function Home() {
     }
   };
 
-  //Saves the current word in defArr to supabase favourites table
+  //Saves the current word in defObj to supabase favourites table
   const saveWord = async () => {
     const supabaseAccessToken = await session.getToken({
       template: "Supabase",
@@ -96,7 +98,7 @@ export default function Home() {
     const supabase = await supabaseClient(supabaseAccessToken);
     const { data, error } = await supabase
       .from("favourites")
-      .insert({ word: defArr.word, def: defArr.def, user_id: session.user.id })
+      .insert({ word: defObj.word, def: defObj.def, user_id: session.user.id })
       .select();
     if (data) {
       setFavouritesArr([...favouritesArr, data[0]]);
@@ -137,9 +139,11 @@ export default function Home() {
                   <Card
                     randomWord={randomWord}
                     setRandomWord={setRandomWord}
-                    defArr={defArr}
-                    setDefArr={setDefArr}
+                    defObj={defObj}
+                    setDefObj={setDefObj}
                     saveWord={saveWord}
+                    wordArr={wordArr}
+                    setWordArr={setWordArr}
                   />
                 </div>
                 <div className="flex h-full w-1/3 flex-col items-center justify-center max-md:w-2/3">
