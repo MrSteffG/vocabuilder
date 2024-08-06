@@ -1,14 +1,18 @@
+import Link from "next/link";
 import React from "react";
+import { FaGithub } from "react-icons/fa";
 
 const Footer = () => {
   return (
     <div className="flex w-screen items-center justify-center bg-black p-10 text-white">
       <div className="flex w-2/3">
-        <div className="flex flex-col gap-4">
-          <h1>I am link</h1>
-          <h1>I am link</h1>
-          <h1>I am link</h1>
-        </div>
+        <a
+          className="flex flex-row items-center justify-center gap-4"
+          href="https://github.com/MrSteffG/vocabuilder"
+          target="_blank"
+        >
+          <FaGithub /> <span>Github repository</span>
+        </a>
       </div>
     </div>
   );
