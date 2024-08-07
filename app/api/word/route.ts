@@ -1,3 +1,7 @@
+
+// Check out the docs to implement your own backend functions:
+// https://nextjs.org/docs/pages/building-your-application/routing/api-routes
+
 export async function GET() {
   const response = await fetch("https://api.api-ninjas.com/v1/randomword", {
     cache: 'no-store',
