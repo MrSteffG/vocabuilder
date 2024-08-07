@@ -1,3 +1,7 @@
+// I'm sorry this is TypeScript now, but my sanity wanes without it.
+// TL;DR Means your idiocy shows up as squiggly red lines instead of hours of debugging.
+// 100 sec crash course - https://www.youtube.com/watch?v=zQnBQ4tB3ZA
+
 const fetchWord = async (): Promise<string> => {
   try {
     const response = await fetch(`/api/word`, {
