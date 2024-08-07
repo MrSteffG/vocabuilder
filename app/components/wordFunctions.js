@@ -1,9 +1,12 @@
+"use client";
+
+//Fetches a random word
 const fetchWord = async () => {
   const urlRandWord = "https://api.api-ninjas.com/v1/randomword";
   try {
     const response = await fetch(urlRandWord, {
       headers: {
-        "x-api-key": "kOSm5RXchY0yvNn5T92DTA==NDQfoMYMJrnpymsK",
+        "x-api-key": process.env.NEXT_PUBLIC_API_NINJAS_KEY,
       },
     });
     const json = await response.json();
@@ -15,24 +18,30 @@ const fetchWord = async () => {
   }
 };
 
-//Fetches the definition of the randomWord
+//Fetches the definition of the randomWord and sets the word and definition to defObj with an id
 const fetchDef = async (word) => {
   const urlDefinition = `https://api.dictionaryapi.dev/api/v2/entries/en/${word}`;
   try {
     const response = await fetch(urlDefinition);
     const defJson = await response.json();
-    const definition = defJson[0].meanings[0].definitions[0].definition;
-    if (definition != undefined) {
-      setDef(definition);
-      setWord(defJson[0].word);
-    }
+    const definition = await defJson[0].meanings[0].definitions[0].definition;
+    setDefObj({
+      id: Math.floor(Math.random() * 100),
+      word: defJson[0].word,
+      def: definition,
+    });
+    setWordArr([...wordArr, defObj]);
+    console.log(wordArr);
   } catch (error) {
-    console.error(error);
-    console.log("Undefined word");
+    console.log(error);
   }
 };
 
-//gets the random word which is passed into the function to fetch its definition
+//fetches random word then fetches the definition
 const fetchWhole = async () => {
   fetchWord().then(fetchDef(randomWord));
+};
+
+const previousWord = () => {
+  setDefObj(wordArr[wordArr.length - 1]);
 };
