@@ -24,7 +24,7 @@ const Card = ({
     try {
       const response = await fetch(urlRandWord, {
         headers: {
-          "x-api-key": "kOSm5RXchY0yvNn5T92DTA==NDQfoMYMJrnpymsK",
+          "x-api-key": process.env.NEXT_PUBLIC_API_NINJAS_KEY,
         },
       });
       const json = await response.json();
