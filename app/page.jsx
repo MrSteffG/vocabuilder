@@ -24,6 +24,7 @@ import React, { useEffect, useState } from "react";
 //Supabase imports
 import supabaseClient from "./config/supabaseClient";
 import Head from "next/head";
+import fetchDef from "./components/wordFunctions";
 
 import { Montserrat } from "next/font/google";
 
@@ -81,14 +82,21 @@ export default function Home() {
       setDefObj({
         id: Math.floor(Math.random() * 100),
         word: defJson[0].word,
-        def: definition,
+        definition: definition,
       });
+      console.log(definition);
     } catch (error) {
       console.log(error);
     } finally {
       console.log("finished");
     }
   };
+
+  // const fetchSavedDef = async (word) => {
+  //   fetchDef(word).then((definition) => {
+  //     setDefObj(definition);
+  //   });
+  // };
 
   //Saves the current word in defObj to supabase favourites table
   const saveWord = async () => {
