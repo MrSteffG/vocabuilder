@@ -5,7 +5,7 @@ import { FaHeart } from "react-icons/fa";
 import { FaShare } from "react-icons/fa";
 import { FaArrowRight } from "react-icons/fa";
 import { FaArrowLeft } from "react-icons/fa";
-import { fetchWhole } from "./wordFunctions.ts";
+import { fetchWhole } from "./wordFunctions";
 
 const Card = ({
   setRandomWord,
