@@ -134,45 +134,40 @@ export default function Home() {
   };
 
   return (
-    <div className="flex h-full flex-col items-center bg-gradient-to-tr from-sky-100 via-emerald-50 to-yellow-100">
-      <Navbar />
-      <div className="flex h-full w-full flex-col items-center justify-center border-2">
-        <div className="flex h-screen w-2/3 items-center max-md:w-full">
-          <SignedIn>
-            <div className="mb-10 flex h-full w-full flex-col items-center justify-center gap-20">
-              <Header />
-              <div className="flex h-2/5 w-full gap-10 max-md:w-full max-md:flex-col max-md:items-center">
-                <div className="flex h-full w-2/3 flex-col items-center justify-start gap-10">
-                  <Searchbar fetchSavedDef={fetchSavedDef} />
-                  <Card
-                    randomWord={randomWord}
-                    setRandomWord={setRandomWord}
-                    defObj={defObj}
-                    setDefObj={setDefObj}
-                    saveWord={saveWord}
-                    wordArr={wordArr}
-                    setWordArr={setWordArr}
-                  />
-                </div>
-                <div className="flex h-full w-1/3 flex-col items-center justify-center max-md:w-2/3">
-                  <FavouritesList
-                    favouritesArr={favouritesArr}
-                    fetchSavedDef={fetchSavedDef}
-                    setFavouritesArr={setFavouritesArr}
-                    deleteFavourite={deleteFavourite}
-                  />
-                </div>
-              </div>
+    <div className="flex min-h-screen w-2/3 flex-col items-center justify-center max-md:w-full">
+      <SignedIn>
+        <div className="flex min-h-screen w-full flex-col items-center justify-center gap-20 text-center">
+          <Header />
+          <div className="flex h-2/5 w-full gap-10 max-md:w-full max-md:flex-col max-md:items-center">
+            <div className="flex h-full w-2/3 flex-col items-center justify-start gap-10">
+              <Searchbar fetchSavedDef={fetchSavedDef} />
+              <Card
+                randomWord={randomWord}
+                setRandomWord={setRandomWord}
+                defObj={defObj}
+                setDefObj={setDefObj}
+                saveWord={saveWord}
+                wordArr={wordArr}
+                setWordArr={setWordArr}
+              />
             </div>
-          </SignedIn>
-          <SignedOut>
-            <div className="flex items-center justify-center">
-              <Hero />
+            <div className="flex h-full w-1/3 flex-col items-center justify-center max-md:w-2/3">
+              <FavouritesList
+                favouritesArr={favouritesArr}
+                fetchSavedDef={fetchSavedDef}
+                setFavouritesArr={setFavouritesArr}
+                deleteFavourite={deleteFavourite}
+              />
             </div>
-          </SignedOut>
+          </div>
         </div>
-      </div>
-      <Footer />
+      </SignedIn>
+
+      <SignedOut>
+        <div className="flex items-center justify-center">
+          <Hero />
+        </div>
+      </SignedOut>
     </div>
   );
 }
