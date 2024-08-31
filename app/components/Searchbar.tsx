@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { IoIosSearch } from "react-icons/io";
 
-const Searchbar = ({ fetchSavedDef }) => {
+const Searchbar = ({ fetchSavedDef }: { fetchSavedDef: any }) => {
   //State variables
   const [searchInput, setSearchInput] = useState("");
 
@@ -9,7 +9,7 @@ const Searchbar = ({ fetchSavedDef }) => {
   const style = { color: "black", fontSize: "1.5em" };
 
   //takes the word in the searchbar and is set to serchInput
-  const handleChange = (e) => {
+  const handleChange = (e: any) => {
     e.preventDefault();
     setSearchInput(e.target.value);
   };

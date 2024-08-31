@@ -151,7 +151,7 @@ export default function Home() {
                 setWordArr={setWordArr}
               />
             </div>
-            <div className="flex h-full w-1/3 flex-col items-center justify-center max-md:w-2/3">
+            <div className="flex h-full w-1/3 flex-col items-center justify-center overflow-scroll max-md:w-2/3">
               <FavouritesList
                 favouritesArr={favouritesArr}
                 fetchSavedDef={fetchSavedDef}

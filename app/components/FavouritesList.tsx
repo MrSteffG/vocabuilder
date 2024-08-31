@@ -17,6 +17,11 @@ const FavouritesList = ({
   setFavouritesArr,
   fetchSavedDef,
   deleteFavourite,
+}: {
+  favouritesArr: any;
+  setFavouritesArr: any;
+  fetchSavedDef: any;
+  deleteFavourite: any;
 }) => {
   const { session } = useSession();
 
@@ -28,7 +33,7 @@ const FavouritesList = ({
     const fetchFavourites = async () => {
       try {
         setLoading(true);
-        const supabaseAccessToken = await session.getToken({
+        const supabaseAccessToken = await session!.getToken({
           template: "Supabase",
         });
 
@@ -46,20 +51,22 @@ const FavouritesList = ({
     fetchFavourites();
   }, [session, setFavouritesArr]);
 
-  const favourites = favouritesArr.map((favourite) => (
-    <div
-      key={favourite.id}
-      className="flex w-full items-center justify-between rounded-xl p-2 transition-all duration-500 hover:scale-105 hover:bg-gradient-to-tr hover:from-red-100 hover:via-purple-100 hover:to-blue-100"
-      onClick={() => fetchSavedDef(favourite.word)}
-    >
-      <h3 className="font-semibold text-slate-700">{favourite.word}</h3>
-      <div className="z-10 flex opacity-30 hover:opacity-80">
-        <button onClick={() => deleteFavourite(favourite.id)}>
-          <MdOutlineDeleteOutline style={style} />
-        </button>
+  const favourites = favouritesArr.map(
+    ({ id, word }: { id: number; word: string }) => (
+      <div
+        key={id}
+        className="flex w-full items-center justify-between rounded-xl p-2 transition-all duration-500 hover:scale-105 hover:bg-gradient-to-tr hover:from-red-100 hover:via-purple-100 hover:to-blue-100"
+        onClick={() => fetchSavedDef(word)}
+      >
+        <h3 className="font-semibold text-slate-700">{word}</h3>
+        <div className="z-10 flex opacity-30 hover:opacity-80">
+          <button onClick={() => deleteFavourite(id)}>
+            <MdOutlineDeleteOutline style={style} />
+          </button>
+        </div>
       </div>
-    </div>
-  ));
+    ),
+  );
 
   return (
     <div className="no-scrollbar flex h-full w-full flex-col items-start justify-start overflow-x-scroll rounded-2xl bg-white bg-opacity-20 p-5 shadow-xl">

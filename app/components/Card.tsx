@@ -14,9 +14,16 @@ const Card = ({
   saveWord,
   wordArr,
   setWordArr,
+}: {
+  setRandomWord: any;
+  defObj: any;
+  setDefObj: any;
+  saveWord: any;
+  wordArr: any;
+  setWordArr: any;
 }) => {
   //styles for icons
-  const style = { color: "black", fontSize: "1.3em" };
+  const style: object = { color: "black", fontSize: "1.3em" };
 
   useEffect(() => {
     fetchWhole().then((definition) => {
@@ -60,8 +67,12 @@ const Card = ({
           style={style}
           className="transition-all hover:scale-110"
           onClick={saveWord}
-          onMouseOver={({ target }) => (target.style.color = "red")}
-          onMouseOut={({ target }) => (target.style.color = "black")}
+          onMouseOver={({ target }: { target: any }) =>
+            (target.style.color = "red")
+          }
+          onMouseOut={({ target }: { target: any }) =>
+            (target.style.color = "black")
+          }
         />
         <FaShare style={style} className="transition-all hover:scale-110" />
         <FaArrowRight
